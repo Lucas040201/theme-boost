@@ -1,0 +1,29 @@
+body#page-mod-videotime-view.limitedwidth #page.drawers .main-inner {
+    max-width: 1070px;
+  }
+
+body.path-mod .drawer-toggler.drawer-right-toggle .btn {
+    border-radius: 0!important;
+    clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+    width: 250px;
+    text-transform: uppercase;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    rotate: -90deg;
+    background-color: #0c589c;
+    color: #fff;
+}
+
+body.path-mod .drawer-toggler.drawer-right-toggle {
+    right: -110px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+body.path-mod .drawer-toggler.drawer-right-toggle .btn:hover {
+    padding-bottom: 20px;
+    padding-right: 0;
+    padding-left: 0;
+}

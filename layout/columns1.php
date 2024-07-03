@@ -31,6 +31,8 @@ $templatecontext = [
     'bodyattributes' => $bodyattributes,
 ];
 
+$PAGE->requires->css('/theme/boost/style/mod.css');
+
 if (empty($PAGE->layout_options['noactivityheader'])) {
     $header = $PAGE->activityheader;
     $renderer = $PAGE->get_renderer('core');

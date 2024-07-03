@@ -1,6 +1,6 @@
-body#page-mod-videotime-view.limitedwidth #page.drawers .main-inner {
+body.limitedwidth #page.drawers .main-inner {
     max-width: 1070px;
-  }
+}
 
 body.path-mod .drawer-toggler.drawer-right-toggle .btn {
     border-radius: 0!important;

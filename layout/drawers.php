@@ -91,13 +91,14 @@ $courseNavigation = course_navigation::get_course_navigation();
 $isModule = false;
 $isQuiz = false;
 if ($PAGE->context instanceof \context_module) {
-    $PAGE->requires->css('/theme/boost/style/mod.css');
     $isModule = true;
 
     if($PAGE->cm->modname === 'quiz') {
         $isQuiz = true;
     }
 }
+
+$PAGE->requires->css('/theme/boost/style/mod.css');
 
 $templatecontext = [
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),

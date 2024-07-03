@@ -35,4 +35,6 @@ $templatecontext = [
     'fakeblocks' => $fakeblockshtml,
 ];
 
+$PAGE->requires->css('/theme/boost/style/mod.css');
+
 echo $OUTPUT->render_from_template('theme_boost/embedded', $templatecontext);

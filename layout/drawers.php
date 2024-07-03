@@ -23,6 +23,7 @@
  */
 
 use theme_boost\local\navigation\course_navigation;
+use theme_boost\local\header\contact_info;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -124,5 +125,5 @@ $templatecontext = [
     'isModule' => $isModule,
     'isQuiz' => $isQuiz,
 ];
-
+$templatecontext = array_merge($templatecontext, contact_info::getContactVars());
 echo $OUTPUT->render_from_template('theme_boost/drawers', $templatecontext);

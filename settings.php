@@ -107,5 +107,57 @@ if ($ADMIN->fulltree) {
     $setting->set_updatedcallback('theme_reset_all_caches');
     $page->add($setting);
 
+    // Header settings
+    $page = new admin_settingpage('theme_boost_header', get_string('headersetting', 'theme_boost'));
+
+    $name = 'theme_boost/phone';
+    $title = get_string('phone', 'theme_boost');
+    $description = get_string('phone_desc', 'theme_boost');
+    $setting = new admin_setting_configtext($name, $title, $description, '');
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+    $name = 'theme_boost/cellphone';
+    $title = get_string('cellphone', 'theme_boost');
+    $description = get_string('cellphone_desc', 'theme_boost');
+    $setting = new admin_setting_configtext($name, $title, $description, '');
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+    $name = 'theme_boost/contact_email';
+    $title = get_string('contact_email', 'theme_boost');
+    $description = get_string('contact_email_desc', 'theme_boost');
+    $setting = new admin_setting_configtext($name, $title, $description, '');
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+    $name = 'theme_boost/facebook_link';
+    $title = get_string('facebook_link', 'theme_boost');
+    $description = get_string('facebook_link_desc', 'theme_boost');
+    $setting = new admin_setting_configtext($name, $title, $description, '');
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+    $name = 'theme_boost/instagram_link';
+    $title = get_string('instagram_link', 'theme_boost');
+    $description = get_string('instagram_link_desc', 'theme_boost');
+    $setting = new admin_setting_configtext($name, $title, $description, '');
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+    $name = 'theme_boost/linkedin_link';
+    $title = get_string('linkedin_link', 'theme_boost');
+    $description = get_string('linkedin_link_desc', 'theme_boost');
+    $setting = new admin_setting_configtext($name, $title, $description, '');
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+    $name = 'theme_boost/youtube_link';
+    $title = get_string('youtube_link', 'theme_boost');
+    $description = get_string('youtube_link_desc', 'theme_boost');
+    $setting = new admin_setting_configtext($name, $title, $description, '');
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
     $settings->add($page);
 }

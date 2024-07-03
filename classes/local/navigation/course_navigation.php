@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version metadata for the block_class_material plugin.
+ * Version metadata for the theme_boost plugin.
  *
- * @package   block_class_material
+ * @package   theme_boost
  * @copyright 2024 Lucas Mendes {@link https://www.lucasmendesdev.com.br}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

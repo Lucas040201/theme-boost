@@ -2,6 +2,10 @@ body.limitedwidth #page.drawers .main-inner {
     max-width: 1070px;
 }
 
+#page.drawers {
+    margin-top: 120px
+}
+
 body.path-mod .drawer-toggler.drawer-right-toggle .btn {
     border-radius: 0!important;
     clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
@@ -27,3 +31,49 @@ body.path-mod .drawer-toggler.drawer-right-toggle .btn:hover {
     padding-right: 0;
     padding-left: 0;
 }
+
+.contact-menu {
+    border-bottom: 1px solid #cecece;
+}
+
+.contact-menu .contact {
+    font-size: 12px;
+    gap: 10px
+}
+
+.contact-menu .social-medias {
+    gap: 10px;
+    font-size: 18px;
+}
+
+.contact-menu .contact, .contact-menu .social-medias {
+    flex: 1;
+}
+
+.contact-menu .contact a, .contact-menu .social-medias a {
+    color: #000!important;
+    transition: color .4s;
+}
+
+.contact-menu .contact a:hover, .contact-menu .social-medias a:hover {
+    color: #0f6cbf!important;
+    text-decoration: none;
+}
+
+.drawer-toggles .drawer-toggler {
+    top: calc(120px + 0.7rem);
+}
+
+
+@media (min-width: 992px) {
+    #page.drawers {
+        height: calc(100vh - 120px);
+    }
+
+    .drawer-left, .drawer-right {
+        top: 120px;
+        height: calc(100vh - 120px);
+    }
+}
+
+

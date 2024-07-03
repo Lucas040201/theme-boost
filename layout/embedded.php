@@ -21,6 +21,7 @@
  * @copyright 2016 Damyon Wiese
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+use theme_boost\local\header\contact_info;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -36,5 +37,5 @@ $templatecontext = [
 ];
 
 $PAGE->requires->css('/theme/boost/style/mod.css');
-
+$templatecontext = array_merge($templatecontext, contact_info::getContactVars());
 echo $OUTPUT->render_from_template('theme_boost/embedded', $templatecontext);

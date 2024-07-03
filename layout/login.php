@@ -13,6 +13,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+use theme_boost\local\header\contact_info;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -31,6 +32,6 @@ $templatecontext = [
     'output' => $OUTPUT,
     'bodyattributes' => $bodyattributes
 ];
-
+$templatecontext = array_merge($templatecontext, contact_info::getContactVars());
 echo $OUTPUT->render_from_template('theme_boost/login', $templatecontext);
 

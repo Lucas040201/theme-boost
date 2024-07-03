@@ -34,109 +34,45 @@ include_once($CFG->libdir . '/modinfolib.php');
 
 class course_navigation {
 
-    private static function get_sibling_modules(int $sectionnum, int $activitynum){
+    private static function get_sibling_modules(int $sectionnum, int $activitynum) {
         global $COURSE;
-        $currentsection = get_fast_modinfo($COURSE)->get_section_info($sectionnum);
-        $modules = get_fast_modinfo($COURSE)->get_cms();
+        $modInfo = get_fast_modinfo($COURSE);
+        $modules = $modInfo->get_cms();
+
+        $prevModule = null;
+        $nextModule = null;
+        $currentModule = null;
+        foreach($modules as $mod) {
+            if (!$mod->uservisible || (!$mod->has_view() && strcmp($mod->modname, 'folder') !== 0)) {
+                continue;
+            }
+
+            if(!empty($currentModule)) {
+                $nextModule = $mod;
+                break;
+            }
+
+
+            if((int)$activitynum === (int)$mod->id) {
+                $currentModule = $mod;
+                continue;
+            }
+
+            $prevModule = $mod;
+        }
+
+        $data = [];
+        if(!empty($prevModule)) {
+            $data['prev'] = $prevModule->get_url()->out(false);
+        }
+
+        if(!empty($nextModule)) {
+            $data['next'] = $nextModule->get_url()->out(false);
+        }
         
-        if(empty($currentsection->modinfo->sections[$sectionnum])) {
-            throw new Exception('Section number error');
-        }
-
-        $activitiesId = array_values($currentsection->modinfo->sections[$sectionnum]);
-
-        $currentActivityKey = array_search($activitynum, $activitiesId);
-        $firstItemId = (int)$activitiesId[0];
-        if($currentActivityKey === 0 && count($activitiesId) > 1) {
-            $nextModuleUrl = array_values(array_filter($modules, function ($mod) use($activitiesId){
-                return $mod->id === $activitiesId[1];
-            }));
-            return [
-                'prev' => '',
-                'next' => $nextModuleUrl[0]->get_url()->out(false),
-            ];
-        }
-
-        $lastItemId = (int)end($activitiesId);
-        if($lastItemId === $activitynum && count($activitiesId) > 1) {
-            $prevModuleUrl = array_values(array_filter($modules, function ($mod) use($activitiesId){
-                return $mod->id === $activitiesId[count($activitiesId) - 2];
-            }));
-            return [
-                'prev' => $prevModuleUrl[0]->get_url()->out(false),
-                'next' => ''
-            ];
-        }
-
-        if($lastItemId !== $activitynum && $firstItemId !== $activitynum) {
-            $currentElementKey = array_search($activitynum, $activitiesId);
-
-            $prevModuleId = $activitiesId[$currentElementKey - 1];
-            $nextModuleId = $activitiesId[$currentElementKey + 1];
-
-            $nextModuleUrl = array_values(array_filter($modules, function ($mod) use($nextModuleId){
-                return $mod->id === $nextModuleId;
-            }));
-
-            $prevModuleUrl = array_values(array_filter($modules, function ($mod) use($prevModuleId){
-                return $mod->id === $prevModuleId;
-            }));
-
-            return [
-                'prev' => $prevModuleUrl[0]->get_url()->out(false),
-                'next' => $nextModuleUrl[0]->get_url()->out(false),
-            ];
-        }
-
-        return [];
+        return $data;
       }
 
-    private static function getNextSectionFirstActivityUrl(int $sectionnum, int $currentActivitId) {
-        global $COURSE;
-        $modules = get_fast_modinfo($COURSE)->get_cms();
-        $currentsection = get_fast_modinfo($COURSE)->get_section_info($sectionnum);
-        $sectionsWithActivitiesIds = $currentsection->modinfo->sections;
-
-        if(empty($sectionsWithActivitiesIds[$sectionnum + 1])) {
-            return;
-        }
-
-        $nextSection = $sectionsWithActivitiesIds[$sectionnum + 1];
-        $firstActivityId = $nextSection[0];
-
-        $firstModFromNextSection = array_filter($modules, function ($mod) use ($firstActivityId) {
-            return $mod->id === $firstActivityId;
-        });
-
-        return end($firstModFromNextSection)->get_url()->out(false);
-    }
-    
-    private static function getPrevSectionLastActivityUrl(int $sectionnum, int $currentActivitId) {
-        global $COURSE;
-        $modules = get_fast_modinfo($COURSE)->get_cms();
-
-        if($sectionnum === 0) {
-            return;
-        }
-        $currentsection = get_fast_modinfo($COURSE)->get_section_info($sectionnum);
-        $sectionsWithActivitiesIds = $currentsection->modinfo->sections;
-        
-        $prevSection = $sectionsWithActivitiesIds[$sectionnum - 1];
-        $lastActivityId = end($prevSection);
-
-        $lastModFromPrevSection = array_filter($modules, function ($mod) use ($lastActivityId) {
-            return $mod->id === $lastActivityId;
-        });
-
-        return end($lastModFromPrevSection)->get_url()->out(false);
-    }
-
-
-    private static function get_sibling_subsections(int $sectionnum, int $currentActivitId){
-        $prevsubsectionurl = self::getPrevSectionLastActivityUrl($sectionnum, $currentActivitId);
-        $nextsubsectionurl = self::getNextSectionFirstActivityUrl($sectionnum, $currentActivitId);
-        return ['prev'=>$prevsubsectionurl, 'next'=>$nextsubsectionurl];
-      }
 
 
     public static function get_course_navigation()
@@ -146,19 +82,16 @@ class course_navigation {
         if($PAGE->context instanceof \context_module){
             $sectionnum = $PAGE->cm->sectionnum;
             $activitynum = $PAGE->cm->__get('id');
-        }
-        elseif($PAGE->context instanceof \context_course){
+        } elseif($PAGE->context instanceof \context_course){
             $sectionnum = $PAGE->url->get_param('section');
             $activitynum = 0;
+        } else {
+            return '';
         }
         $url = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 
         if (isset($sectionnum) && $DB->record_exists('course', array('id' => $COURSE->id)) && strpos($url,'grade/edit/') == false){
             $siblingmodules = self::get_sibling_modules($sectionnum,$activitynum);
-            $siblingsubsections = self::get_sibling_subsections($sectionnum, $activitynum);
-            $nextActivity = $siblingsubsections['next'];
-            $prevActivity = $siblingsubsections['prev'];
-
             if(!empty($siblingmodules['next'])) {
                 $nextActivity = $siblingmodules['next'];
             }

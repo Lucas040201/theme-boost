@@ -128,18 +128,34 @@
                     {{/isModule}}
                     {{#isModule}}
                         <div class="drawer-toggler drawer-right-toggle ml-auto d-print-none">
-                            <button
-                                class="btn icon-no-margin"
-                                data-toggler="drawers"
-                                data-action="toggle"
-                                data-target="theme_boost-drawers-blocks"
-                                data-toggle="tooltip"
-                                data-placement="right"
-                                title="{{#str}}opendrawerblocks, theme_boost{{/str}}"
-                            >
-                                <i class="fa-solid fa-chevron-up pr-2"></i>
-                                {{#str}}opendrawerblocks, theme_boost{{/str}}
-                            </button>
+                        {{#isQuiz}}
+                                <button
+                                    class="btn icon-no-margin"
+                                    data-toggler="drawers"
+                                    data-action="toggle"
+                                    data-target="theme_boost-drawers-blocks"
+                                    data-toggle="tooltip"
+                                    data-placement="right"
+                                    title="{{#str}}opendrawerquiz, theme_boost{{/str}}"
+                                >
+                                    <i class="fa-solid fa-chevron-up pr-2"></i>
+                                    {{#str}}opendrawerquiz, theme_boost{{/str}}
+                                </button>
+                            {{/isQuiz}}
+                            {{^isQuiz}}
+                                <button
+                                    class="btn icon-no-margin"
+                                    data-toggler="drawers"
+                                    data-action="toggle"
+                                    data-target="theme_boost-drawers-blocks"
+                                    data-toggle="tooltip"
+                                    data-placement="right"
+                                    title="{{#str}}opendrawerblocks, theme_boost{{/str}}"
+                                >
+                                    <i class="fa-solid fa-chevron-up pr-2"></i>
+                                    {{#str}}opendrawerblocks, theme_boost{{/str}}
+                                </button>
+                            {{/isQuiz}}
                         </div>
                     {{/isModule}}
                 {{/hasblocks}}

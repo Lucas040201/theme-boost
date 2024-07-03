@@ -89,9 +89,14 @@ $headercontent = $header->export_for_template($renderer);
 $courseNavigation = course_navigation::get_course_navigation();
 
 $isModule = false;
+$isQuiz = false;
 if ($PAGE->context instanceof \context_module) {
     $PAGE->requires->css('/theme/boost/style/mod.css');
     $isModule = true;
+
+    if($PAGE->cm->modname === 'quiz') {
+        $isQuiz = true;
+    }
 }
 
 $templatecontext = [
@@ -116,6 +121,7 @@ $templatecontext = [
     'addblockbutton' => $addblockbutton,
     'courseNavigation' => $courseNavigation,
     'isModule' => $isModule,
+    'isQuiz' => $isQuiz,
 ];
 
 echo $OUTPUT->render_from_template('theme_boost/drawers', $templatecontext);

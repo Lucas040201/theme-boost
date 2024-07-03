@@ -76,3 +76,4 @@ $string['prev_activity_tooltip'] = 'Go back to the previous activity';
 $string['prev_activity'] = 'Previous activity';
 $string['next_activity_tooltip'] = 'Next to next activity';
 $string['next_activity'] = 'Next Activity';
+$string['opendrawerquiz'] = 'Expand Quiz';

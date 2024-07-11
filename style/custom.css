@@ -77,3 +77,9 @@ body.path-mod .drawer-toggler.drawer-right-toggle .btn:hover {
 }
 
 
+@media (max-width: 769px) {
+    .contact-menu {
+        display: none!important;
+    }
+}
+

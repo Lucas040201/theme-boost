@@ -33,6 +33,6 @@ $templatecontext = [
     'output' => $OUTPUT
 ];
 
-$PAGE->requires->css('/theme/boost/style/mod.css');
+$PAGE->requires->css('/theme/boost/style/custom.css');
 $templatecontext = array_merge($templatecontext, contact_info::getContactVars());
 echo $OUTPUT->render_from_template('theme_boost/maintenance', $templatecontext);

@@ -31,7 +31,7 @@ $templatecontext = [
     'bodyattributes' => $bodyattributes,
 ];
 
-$PAGE->requires->css('/theme/boost/style/mod.css');
+$PAGE->requires->css('/theme/boost/style/custom.css');
 
 if (empty($PAGE->layout_options['noactivityheader'])) {
     $header = $PAGE->activityheader;

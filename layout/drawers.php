@@ -99,7 +99,7 @@ if ($PAGE->context instanceof \context_module) {
     }
 }
 
-$PAGE->requires->css('/theme/boost/style/mod.css');
+$PAGE->requires->css('/theme/boost/style/custom.css');
 
 $templatecontext = [
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),

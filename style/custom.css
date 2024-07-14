@@ -64,6 +64,30 @@ body.path-mod .drawer-toggler.drawer-right-toggle .btn:hover {
     top: calc(120px + 0.7rem);
 }
 
+.expiration-date {
+    margin-left: 0.8rem;
+    max-width: 170px;
+    padding: 10px;
+    border-radius: 100px;
+}
+
+.expiration-date.expiration-date-green {
+    background-color: rgb(17 166 118 / 50%) !important;
+}
+
+.expiration-date.expiration-date-yellow {
+    background-color: rgb(240 173 78 / 50%) !important;
+}
+
+.expiration-date.expiration-date-red {
+    background-color: rgb(202 49 32 / 40%) !important;
+}
+
+.expiration-date p {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
 
 @media (min-width: 992px) {
     #page.drawers {

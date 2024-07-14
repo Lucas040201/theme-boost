@@ -92,3 +92,6 @@ $string['instagram_link_desc'] = 'Instagram link. Appears above the main menu.';
 $string['linkedin_link_desc'] = 'Linkedin link. Appears above the main menu.';
 $string['youtube_link_desc'] = 'Youtube link. Appears above the main menu.';
 $string['headersetting'] = 'Header settings';
+$string['expires_in'] = 'Expires in: ';
+$string['day'] = 'Day';
+$string['days'] = 'Days';

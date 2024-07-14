@@ -48,3 +48,6 @@ $string['instagram_link_desc'] = 'Link do Instagram. Aparece acima do menu princ
 $string['linkedin_link_desc'] = 'Link do Linkedin. Aparece acima do menu principal.';
 $string['youtube_link_desc'] = 'Link do Youtube. Aparece acima do menu principal.';
 $string['headersetting'] = 'Configurações do Cabeçalho';
+$string['expires_in'] = 'Expira em: ';
+$string['day'] = 'Dia';
+$string['days'] = 'Dias';

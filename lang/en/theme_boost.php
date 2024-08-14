@@ -95,3 +95,4 @@ $string['headersetting'] = 'Header settings';
 $string['expires_in'] = 'Expires in: ';
 $string['day'] = 'Day';
 $string['days'] = 'Days';
+$string['today'] = 'Today';

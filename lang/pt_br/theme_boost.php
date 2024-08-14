@@ -51,3 +51,4 @@ $string['headersetting'] = 'Configurações do Cabeçalho';
 $string['expires_in'] = 'Expira em: ';
 $string['day'] = 'Dia';
 $string['days'] = 'Dias';
+$string['today'] = 'Hoje';

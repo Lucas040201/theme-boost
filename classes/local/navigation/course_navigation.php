@@ -34,7 +34,7 @@ include_once($CFG->libdir . '/modinfolib.php');
 
 class course_navigation {
 
-    private static function get_sibling_modules(int $sectionnum, int $activitynum) {
+    private static function get_sibling_modules(int $activitynum) {
         global $COURSE;
         $modInfo = get_fast_modinfo($COURSE);
         $modules = $modInfo->get_cms();
@@ -91,7 +91,7 @@ class course_navigation {
         $url = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 
         if (isset($sectionnum) && $DB->record_exists('course', array('id' => $COURSE->id)) && strpos($url,'grade/edit/') == false){
-            $siblingmodules = self::get_sibling_modules($sectionnum,$activitynum);
+            $siblingmodules = self::get_sibling_modules($activitynum);
             if(!empty($siblingmodules['next'])) {
                 $nextActivity = $siblingmodules['next'];
             }
